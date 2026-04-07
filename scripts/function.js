@@ -138,3 +138,89 @@ if (carousel) {
 
   carousel.addEventListener("scroll", infiniteScroll);
 }
+
+
+
+
+
+/* ===============================
+   SISTEMA DE RESERVAS (MODAIS E FILTROS)
+================================ */
+
+// Variáveis Globais de Controle
+let datasSelecionadas = "";
+let qtdAdultos = 2;
+let qtdCriancas = 0;
+
+// 1. Inicializar Flatpickr (Calendário)
+// Certifique-se de ter o <script> do flatpickr no HTML antes do function.js
+if (document.getElementById('btn-calendario')) {
+    flatpickr("#btn-calendario", {
+        mode: "range",
+        minDate: "today",
+        dateFormat: "d/m/Y",
+        onChange: function(_selectedDates, dateStr) {
+            datasSelecionadas = dateStr;
+            const p = document.querySelector("#btn-calendario p");
+            if(p) p.innerText = dateStr || "Adicionar datas";
+        }
+    });
+}
+
+// 2. Funções de Quantidade (Hóspedes)
+function changeQty(tipo, delta) {
+  if (tipo === "adultos") {
+    qtdAdultos = Math.max(1, qtdAdultos + delta);
+    // Atualiza o número dentro do modal
+    document.getElementById("qty-adultos-modal").innerText = qtdAdultos;
+  } else if (tipo === "criancas") {
+    qtdCriancas = Math.max(0, qtdCriancas + delta);
+    // Atualiza o número dentro do modal
+    document.getElementById("qty-criancas-modal").innerText = qtdCriancas;
+  }
+
+  // Atualiza o texto que aparece na barra principal (o botão que abre o modal)
+  const resumo = document.getElementById("hospedes-resumo");
+  if (resumo) resumo.innerText = `${qtdAdultos} Adlt, ${qtdCriancas} Crinc`;
+}
+
+// 3. Gerenciamento dos Modais
+const modalHosp = document.getElementById('modal-hospedes');
+const btnHospedes = document.getElementById('btn-hospedes');
+
+// Abrir modal de hóspedes
+btnHospedes?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    modalHosp.classList.add('show');
+});
+
+// Função única para fechar modais de reserva
+function fecharModaisReserva() {
+    modalHosp?.classList.remove('show');
+}
+
+// Fechar ao clicar fora do conteúdo branco do modal
+window.addEventListener('click', (e) => {
+    if (e.target === modalHosp) {
+        fecharModaisReserva();
+    }
+});
+
+// 4. Botão Verificar Disponibilidade (O Filtro)
+document.getElementById('btn-verificar')?.addEventListener('click', () => {
+    // Extrair datas para a URL
+    const datas = datasSelecionadas.split(" a ");
+    const checkin = datas[0] || "";
+    const checkout = datas[1] || "";
+
+    // Criar link com parâmetros (Query Strings)
+    const params = new URLSearchParams({
+        checkin: checkin,
+        checkout: checkout,
+        adultos: qtdAdultos,
+        criancas: qtdCriancas
+    });
+
+    // Redirecionar para a página de resultados (substitua pelo nome do seu arquivo de resultados)
+    window.location.href = `resultados.html?${params.toString()}`;
+});
