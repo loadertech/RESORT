@@ -12,7 +12,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/imagens/imagens_gerentes/resorts/fabio-fistarol-qai_Clhyq0s-unsplash.jpg")
+  background: url("../imagens/imagens_gerentes/resorts/fabio-fistarol-qai_Clhyq0s-unsplash.jpg")
     center/cover;
   opacity: 0.3;
 }

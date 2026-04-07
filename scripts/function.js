@@ -1,4 +1,4 @@
-/* ===============================
+﻿/* ===============================
    MENU LATERAL
 ================================ */
 const menuToggle = document.querySelector(".menu-toggle");
@@ -18,19 +18,17 @@ function fecharMenu() {
   menuToggle.setAttribute("aria-expanded", "false");
 }
 
-menuToggle.addEventListener("click", () => {
+menuToggle?.addEventListener("click", () => {
   menu.classList.contains("ativo") ? fecharMenu() : abrirMenu();
 });
 
-overlay.addEventListener("click", fecharMenu);
-menuClose.addEventListener("click", fecharMenu);
+overlay?.addEventListener("click", fecharMenu);
+menuClose?.addEventListener("click", fecharMenu);
 
 const themeToggle = document.querySelector(".theme-toggle");
 const themeIcon = themeToggle?.querySelector(".theme-icon");
 const savedTheme = localStorage.getItem("theme");
-const prefersDark = window.matchMedia?.(
-  "(prefers-color-scheme: dark)",
-)?.matches;
+const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
 const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
 
 const applyTheme = (theme) => {
@@ -54,173 +52,72 @@ if (themeToggle) {
 applyTheme(initialTheme);
 
 /* ===============================
-   CARROSSEL INFINITO
+   SISTEMA DE RESERVAS (DATAS E HÓSPEDES)
 ================================ */
-const carousel = document.querySelector(".carousel");
-const arrowBtns = document.querySelectorAll(".wrapper span");
-
-if (carousel) {
-  const firstCard = carousel.querySelector(".cartao");
-  const firstCardWidth = firstCard.offsetWidth;
-
-  let isDragging = false;
-  let startX;
-  let startScrollLeft;
-
-  let cardPerView = Math.max(
-    1,
-    Math.round(carousel.offsetWidth / firstCardWidth),
-  );
-
-  const cards = [...carousel.children];
-
-  /* Clones para loop infinito */
-  cards
-    .slice(-cardPerView)
-    .reverse()
-    .forEach((card) => {
-      carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
-    });
-
-  cards.slice(0, cardPerView).forEach((card) => {
-    carousel.insertAdjacentHTML("beforeend", card.outerHTML);
-  });
-
-  carousel.scrollLeft = carousel.offsetWidth;
-
-  /* Setas */
-  arrowBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      carousel.scrollLeft +=
-        btn.id === "left" ? -firstCardWidth : firstCardWidth;
-    });
-  });
-
-  /* Drag */
-  const dragStart = (e) => {
-    isDragging = true;
-    carousel.classList.add("dragging");
-    startX = e.pageX;
-    startScrollLeft = carousel.scrollLeft;
-  };
-
-  const dragging = (e) => {
-    if (!isDragging) return;
-    carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
-  };
-
-  const dragStop = () => {
-    isDragging = false;
-    carousel.classList.remove("dragging");
-  };
-
-  carousel.addEventListener("mousedown", dragStart);
-  carousel.addEventListener("mousemove", dragging);
-  document.addEventListener("mouseup", dragStop);
-
-  /* Loop infinito invisível */
-  const infiniteScroll = () => {
-    if (carousel.scrollLeft <= 0) {
-      carousel.classList.add("no-transition");
-      carousel.scrollLeft = carousel.scrollWidth - 2 * carousel.offsetWidth;
-      carousel.classList.remove("no-transition");
-    }
-
-    if (
-      Math.ceil(carousel.scrollLeft) >=
-      carousel.scrollWidth - carousel.offsetWidth
-    ) {
-      carousel.classList.add("no-transition");
-      carousel.scrollLeft = carousel.offsetWidth;
-      carousel.classList.remove("no-transition");
-    }
-  };
-
-  carousel.addEventListener("scroll", infiniteScroll);
-}
-
-
-
-
-
-/* ===============================
-   SISTEMA DE RESERVAS (MODAIS E FILTROS)
-================================ */
-
-// Variáveis Globais de Controle
 let datasSelecionadas = "";
 let qtdAdultos = 2;
 let qtdCriancas = 0;
 
-// 1. Inicializar Flatpickr (Calendário)
-// Certifique-se de ter o <script> do flatpickr no HTML antes do function.js
-if (document.getElementById('btn-calendario')) {
-    flatpickr("#btn-calendario", {
-        mode: "range",
-        minDate: "today",
-        dateFormat: "d/m/Y",
-        onChange: function(_selectedDates, dateStr) {
-            datasSelecionadas = dateStr;
-            const p = document.querySelector("#btn-calendario p");
-            if(p) p.innerText = dateStr || "Adicionar datas";
-        }
-    });
+const btnCalendario = document.getElementById("btn-calendario");
+const inputDatas = document.getElementById("input-datas");
+const modalHosp = document.getElementById("modal-hospedes");
+const btnHospedes = document.getElementById("btn-hospedes");
+let calendarioPicker = null;
+
+if (inputDatas && typeof flatpickr !== "undefined") {
+  calendarioPicker = flatpickr(inputDatas, {
+    mode: "range",
+    minDate: "today",
+    dateFormat: "d/m/Y",
+    onChange: function (_selectedDates, dateStr) {
+      datasSelecionadas = dateStr;
+      const p = document.querySelector("#btn-calendario p");
+      if (p) p.innerText = dateStr || "Adicionar datas";
+    },
+  });
 }
 
-// 2. Funções de Quantidade (Hóspedes)
+btnCalendario?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (calendarioPicker) calendarioPicker.open();
+});
+
 function changeQty(tipo, delta) {
   if (tipo === "adultos") {
     qtdAdultos = Math.max(1, qtdAdultos + delta);
-    // Atualiza o número dentro do modal
-    document.getElementById("qty-adultos-modal").innerText = qtdAdultos;
+    const adultosEl = document.getElementById("qty-adultos-modal");
+    if (adultosEl) adultosEl.innerText = String(qtdAdultos);
   } else if (tipo === "criancas") {
     qtdCriancas = Math.max(0, qtdCriancas + delta);
-    // Atualiza o número dentro do modal
-    document.getElementById("qty-criancas-modal").innerText = qtdCriancas;
+    const criancasEl = document.getElementById("qty-criancas-modal");
+    if (criancasEl) criancasEl.innerText = String(qtdCriancas);
   }
 
-  // Atualiza o texto que aparece na barra principal (o botão que abre o modal)
   const resumo = document.getElementById("hospedes-resumo");
   if (resumo) resumo.innerText = `${qtdAdultos} Adlt, ${qtdCriancas} Crinc`;
 }
 
-// 3. Gerenciamento dos Modais
-const modalHosp = document.getElementById('modal-hospedes');
-const btnHospedes = document.getElementById('btn-hospedes');
-
-// Abrir modal de hóspedes
-btnHospedes?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    modalHosp.classList.add('show');
+btnHospedes?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  modalHosp?.classList.add("show");
+  modalHosp?.setAttribute("aria-hidden", "false");
 });
 
-// Função única para fechar modais de reserva
 function fecharModaisReserva() {
-    modalHosp?.classList.remove('show');
+  modalHosp?.classList.remove("show");
+  modalHosp?.setAttribute("aria-hidden", "true");
+
+  const modalDestino = document.getElementById("modal-destino");
+  modalDestino?.classList.remove("show");
+  modalDestino?.setAttribute("aria-hidden", "true");
 }
 
-// Fechar ao clicar fora do conteúdo branco do modal
-window.addEventListener('click', (e) => {
-    if (e.target === modalHosp) {
-        fecharModaisReserva();
-    }
+window.addEventListener("click", (e) => {
+  const modalDestino = document.getElementById("modal-destino");
+  if (e.target === modalHosp || e.target === modalDestino) {
+    fecharModaisReserva();
+  }
 });
 
-// 4. Botão Verificar Disponibilidade (O Filtro)
-document.getElementById('btn-verificar')?.addEventListener('click', () => {
-    // Extrair datas para a URL
-    const datas = datasSelecionadas.split(" a ");
-    const checkin = datas[0] || "";
-    const checkout = datas[1] || "";
-
-    // Criar link com parâmetros (Query Strings)
-    const params = new URLSearchParams({
-        checkin: checkin,
-        checkout: checkout,
-        adultos: qtdAdultos,
-        criancas: qtdCriancas
-    });
-
-    // Redirecionar para a página de resultados (substitua pelo nome do seu arquivo de resultados)
-    window.location.href = `resultados.html?${params.toString()}`;
-});
+window.changeQty = changeQty;
+window.fecharModaisReserva = fecharModaisReserva;

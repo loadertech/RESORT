@@ -27,7 +27,7 @@
   <body class="page-home">
     <header>
       <div>
-        <a href="../index.html">
+        <a href="./index.html">
           <p class="logo">LOGO</p>
         </a>
       </div>
@@ -79,15 +79,21 @@
     <p>Descubra destinos incríveis, conforto absoluto e experiências únicas.</p>
   </div>
 
+
+
   <div class="booking-bar">
-    <div class="booking-item" id="btn-destino">
+
+    <div id="btn-destino" class="booking-item" role="button" tabindex="0">
       <span class="material-symbols-outlined">location_on</span>
-      <div><strong>Destino</strong><p>Para onde vai?</p></div>
+      <div><strong>Para onde vai?</strong><p>Explorar destinos...</p></div>
     </div>
+
+
 
     <div class="booking-item" id="btn-calendario">
       <span class="material-symbols-outlined">calendar_month</span>
       <div><strong>Registo / Confirme</strong><p>Adicionar datas</p></div>
+      <input type="text" id="input-datas" class="hidden-datepicker" aria-label="Selecionar datas" readonly />
     </div>
 
     <div class="booking-item" id="btn-hospedes">
@@ -96,12 +102,11 @@
     </div>
 
     <button class="booking-action" id="btn-verificar">
-      <span class="material-symbols-outlined">search</span>
       <span>Verificar disponibilidade</span>
     </button>
   </div>
 
-  <div id="modal-hospedes" class="booking-modal">
+  <div id="modal-hospedes" class="booking-modal" aria-hidden="true">
     <div class="modal-content small">
       <h3>Hóspedes e Quartos</h3>
       
@@ -289,7 +294,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
               <div class="wrapper-imagem">
                 <img
                   src="imagens/imagens_gerentes/olawale-munna-qpyR0WKV_Cs-unsplash.jpg"
-                  alt="Gerente"
+                  alt="Ivandro Panzo - Director"
                   draggable="false"
                 />
               </div>
@@ -300,7 +305,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
               <div class="wrapper-imagem">
                 <img
                   src="imagens/imagens_gerentes/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg"
-                  alt="Gerente"
+                  alt="Emílio Gaspar - Gerente de Marketing"
                   draggable="false"
                 />
               </div>
@@ -311,7 +316,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
               <div class="wrapper-imagem">
                 <img
                   src="imagens/imagens_gerentes/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.jpg"
-                  alt="Gerente"
+                  alt="Elowine Zita - Gerente de Vendas"
                   draggable="false"
                 />
               </div>
@@ -322,7 +327,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
               <div class="wrapper-imagem">
                 <img
                   src="imagens/imagens_gerentes/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg"
-                  alt="Gerente"
+                  alt="Maria Salo - Gerente de Serviços"
                   draggable="false"
                 />
               </div>
@@ -333,7 +338,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
               <div class="wrapper-imagem">
                 <img
                   src="imagens/imagens_gerentes/itay-verchik-G3ZAhAJ2ojc-unsplash.jpg"
-                  alt="Gerente"
+                  alt="Áurio Zumba - RH"
                   draggable="false"
                 />
               </div>
@@ -377,7 +382,7 @@ Explore os melhores resorts e faça a sua reserva de forma simples, rápida e se
       <!-- SEXTA SECÇÃO - MAPA -->
       <section class="mapa-section" aria-labelledby="mapa-title">
         <h2 id="mapa-title" class="section-info">Localização do resort</h2>
-        <div class="mapa-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4248.893605113733!2d13.100882975347645!3d-8.971890991087182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a52216869f61103%3A0xa486e6ddd4ad828c!2sMupas%20Beach%20%26%20Resort!5e1!3m2!1sen!2sao!4v1767361917332!5m2!1sen!2sao" width="1100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <div class="mapa-container"><iframe title="Mapa do resort" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4248.893605113733!2d13.100882975347645!3d-8.971890991087182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a52216869f61103%3A0xa486e6ddd4ad828c!2sMupas%20Beach%20%26%20Resort!5e1!3m2!1sen!2sao!4v1767361917332!5m2!1sen!2sao" width="1100" height="500" allowfullscreen="" loading="lazy">
 
      </iframe>
       <div class="mapa-card">
@@ -433,8 +438,42 @@ de forma simples, rápida e segura.
       </div>
     </footer>
 
-    <script src="scripts/function.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="scripts/function.js"></script>
+<script src="scripts/infinityCarousel.js"></script>
+<script src="scripts/verifyAccessibility.js"></script>
+<script src="scripts/booking_Destino.js"></script>
+
+
+
+
+
+
+      <div id="modal-destino" class="booking-modal" aria-hidden="true">
+      <div class="modal-content small">
+        <h3>Para onde vai?</h3>
+        <div class="destino-search">
+          <span class="material-symbols-outlined">search</span>
+          <input type="text" id="input-busca-destino" placeholder="Explorar destinos..." oninput="filtrarDestinos()">
+        </div>
+
+        <ul class="lista-destinos">
+          <li onclick="selecionarDestino('Cabo Ledo, Angola')">
+            <span class="material-symbols-outlined">location_on</span> Cabo Ledo, Angola
+          </li>
+          <li onclick="selecionarDestino('Luanda, Angola')">
+            <span class="material-symbols-outlined">location_on</span> Luanda, Angola
+          </li>
+          <li onclick="selecionarDestino('Mussulo, Angola')">
+            <span class="material-symbols-outlined">location_on</span> Ilha do Mussulo
+          </li>
+        </ul>
+
+        <button class="btn-concluido" onclick="fecharModaisReserva()">Fechar</button>
+      </div>
+    </div>
   </body>
 </html>
+
 
 

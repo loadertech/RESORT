@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados de Reserva</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      .resultados-page {
+        padding: 80px 24px;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .resultados-output {
+        text-align: left;
+        background: #f4f5f7;
+        border-radius: 12px;
+        padding: 16px;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .resultados-back {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 24px;
+        background: #044ab3;
+        color: #fff;
+        border-radius: 999px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="resultados-page">
+        <h1>Resultados de Reserva</h1>
+        <p>
+          O seu pedido foi enviado. Esta página serve como marcador de posição
+          até à implementação dos resultados reais.
+        </p>
+        <p>Parâmetros recebidos:</p>
+        <pre id="query-output" class="resultados-output"></pre>
+        <a href="./index.html" class="resultados-back">Voltar ao site</a>
+      </section>
+    </main>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const output = document.getElementById("query-output");
+      output.textContent = params.toString() || "Nenhum parâmetro recebido.";
+    </script>
+  </body>
+</html>
