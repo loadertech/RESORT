@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacte-Nos - Complexo Turístico Baía de Cabo Ledo</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="contact.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-contact">
+    <header>
+      <div>
+        <a href="../index.html">
+          <p class="logo">LOGO</p>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Alternar tema claro e escuro"
+        >
+          <span class="material-symbols-outlined theme-icon">light_mode</span>
+        </button>
+        <button
+          class="menu-toggle"
+          aria-label="Abrir menu"
+          aria-controls="menu-lateral"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined"> menu </span>
+        </button>
+        <nav aria-label="Menu principal">
+          <a href="../index.html" class="botao-nav">Home</a>
+          <a href="../sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+          <a href="./Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+          <a href="#" class="btn-login">Entrar</a>
+        </nav>
+      </div>
+    </header>
+    <!--MENU LATERAL-->
+    <div class="overlay"></div>
+
+    <aside class="menu-lateral" id="menu-lateral" aria-label="Menu móvel">
+      <div class="menu-header">
+        <button class="menu-close" aria-label="Fechar menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <a href="../index.html" class="botao-nav">Home</a>
+      <a href="../sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+      <a href="./Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+      <a href="#" class="btn-reservar">Entrar</a>
+    </aside>
+
+    <main>
+      <div class="hero-image">
+        <img
+          src="https://www.got2globe.com/wp-content/uploads/2023/11/cabo-ledo-angola-bengo-vista-ar.jpg.webp"
+          alt="Vista panorâmica da Baía de Cabo Ledo"
+        />
+      </div>
+
+      <section class="contact-section">
+        <div class="contact-info">
+          <h2>Contacte-Nos</h2>
+          <p>
+            Estamos sempre disponíveis para ajudar com reservas, dúvidas ou
+            informações sobre o nosso complexo. Entre em contacto!
+          </p>
+          <div class="contact-details">
+            <ul>
+              <li><strong>Telefone:</strong> +244 936 419 333</li>
+              <li><strong>Email:</strong> ct.baiadecaboledo@gmail.com</li>
+              <li>
+                <strong>Morada:</strong> Baía de Cabo Ledo, Provincia do Bengo,
+                Angola
+              </li>
+            </ul>
+          </div>
+          <p class="social-links">
+            Siga-nos
+            <a
+              href="https://www.facebook.com/baiacaboledo/"
+              target="_blank"
+              rel="noopener"
+              >no Facebook</a
+            >
+            para novidades e fotos!
+          </p>
+        </div>
+
+        <div class="contact-form">
+          <h2>Envie uma Mensagem</h2>
+          <form
+            action="https://formspree.io/f/your-form-id"
+            method="POST"
+            id="contactForm"
+            aria-label="Formulário de contacto"
+          >
+            <label class="sr-only" for="nome">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="O seu Nome"
+              required
+            />
+            <label class="sr-only" for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="O seu Email"
+              required
+            />
+            <label class="sr-only" for="assunto">Assunto</label>
+            <input
+              type="text"
+              id="assunto"
+              name="assunto"
+              placeholder="Assunto"
+            />
+            <label class="sr-only" for="mensagem">Mensagem</label>
+            <textarea
+              id="mensagem"
+              name="mensagem"
+              rows="6"
+              placeholder="A sua Mensagem"
+              required
+            ></textarea>
+            <button type="submit">Enviar Mensagem</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <h3>Reserve com confiança</h3>
+        <p>
+          Encontre os melhores resorts, compare opções e faça a sua reserva de
+          forma simples, rápida e segura.
+        </p>
+      </div>
+      <div>
+        <h3>Sobre</h3>
+
+        <a href="#"> Blog </a>
+      </div>
+      <div>
+        <h3>Suporte</h3>
+        <a href="#"> Contacte-nos </a>
+        <a href="#"> FAQ </a>
+      </div>
+
+      <div class="footer-section">
+        <h3>Receber Actualizações</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail" />
+          <button type="submit">Subscrever</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <a href="#">Política de privacidade</a> |
+          <a href="#">Termos de serviço</a>
+        </p>
+        <p class="word">@2026 nome_do_resorte. Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <script src="../scripts/function.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

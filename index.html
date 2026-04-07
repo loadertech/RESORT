@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/home.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4D+L3pF6pJ7M5d0N2R8iA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://kit.fontawesome.com/9b6fa4220d.js" crossorigin="anonymous"></script>
+
+    <title>Resort</title>
+  </head>
+  <body class="page-home">
+    <header>
+      <div>
+        <a href="../index.html">
+          <p class="logo">LOGO</p>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">
+          <span class="material-symbols-outlined theme-icon">light_mode</span>
+        </button>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-controls="menu-lateral" aria-expanded="false">
+          <span class="material-symbols-outlined"> menu </span>
+        </button>
+        <nav aria-label="Menu principal">
+          <a href="./index.html" class="botao-nav">Home</a>
+          <a href="./sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+          <a href="./contactos/Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+          <a href="#" class="btn-login">Entrar</a>
+        </nav>
+      </div>
+    </header>
+
+    <!--MENU LATERAL-->
+    <div class="overlay"></div>
+
+    <aside class="menu-lateral" id="menu-lateral" aria-label="Menu móvel">
+      <div class="menu-header">
+        <button class="menu-close" aria-label="Fechar menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+       <a href="./index.html" class="botao-nav">Home</a>
+      <a href="./sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+      <a href="./contactos/Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+      <a href="#" class="btn-reservar">Entrar</a>
+    </aside>
+
+    <main>
+      <!--SECCAO DE BOAS VINDAS-->
+<section class="bem-vindo">
+  <div class="image-slider">
+    <img src="imagens/imagens_gerentes/resorts/fabio-fistarol-qai_Clhyq0s-unsplash.jpg" alt="Piscina do resort com vista para o oceano">
+    <img src="imagens/imagens_gerentes/resorts/sasha-kaunas-xEaAoizNFV8-unsplash.jpg" alt="Quarto de hotel com varanda virada para o mar">
+    <img src="imagens/imagens_gerentes/resorts/bilderboken-rlwE8f8anOc-unsplash.jpg" alt="Área de lazer exterior do resort com espreguiçadeiras">
+    <img src="imagens/imagens_gerentes/resorts/chelsea-gates-0653_wY0nRc-unsplash.jpg" alt="Sala de estar elegante do resort">
+  </div>
+  <div class="welcome-content">
+    <h1>Viva momentos inesquecíveis no resort perfeito</h1>
+    
+    <p>
+   Descubra destinos incríveis, conforto absoluto e experiências únicas.
+Reserve agora e transforme a sua próxima viagem em algo memorável.
+    </p>
+  </div>
+
+  <div class="booking-bar">
+    <button type="button" class="booking-item">
+      <span class="material-symbols-outlined">location_on</span>
+      <div class="booking-item-text">
+        <strong>Resort</strong>
+        <span>Luanda</span>
+      </div>
+    </button>
+    <button type="button" class="booking-item">
+      <span class="material-symbols-outlined">event</span>
+      <div class="booking-item-text">
+        <strong>Registo</strong>
+        <span>10 Ago 2023</span>
+      </div>
+    </button>
+    <button type="button" class="booking-item">
+      <span class="material-symbols-outlined">calendar_today</span>
+      <div class="booking-item-text">
+        <strong>Confirme</strong>
+        <span>11 Ago 2023</span>
+      </div>
+    </button>
+    <button type="button" class="booking-item">
+      <span class="material-symbols-outlined">person</span>
+      <div class="booking-item-text">
+        <strong>Quartos para</strong>
+        <span>1 quarto, 2 convidados</span>
+      </div>
+    </button>
+    <button type="button" class="booking-action">
+      Verificar Disponibilidade
+    </button>
+  </div>
+
+</section>
+
+
+      <!-- Segunda secção-->
+
+      <!-- SEGUNDA SECÇÃO -->
+      <section class="section">
+        <div class="container card">
+          <div class="img-placeholder1"></div>
+
+          <div class="texto">
+            <h2>Reservar é simples e rápido</h2>
+            <p>
+              Escolha o resort, selecione as datas ideais e finalize a sua reserva em poucos cliques.
+Sem complicações, com confirmação imediata e total segurança.
+            </p>
+            <a href="#" class="botao-seccao">Ver Resortes disponíveis</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERCEIRA SECÇÃO -->
+      <section class="section">
+        <div class="caixa-reversa card">
+          <div class="img-placeholder2"></div>
+
+          <div class="texto">
+            <br />
+            <h2>Reserve com conforto e tranquilidade</h2>
+            <p>
+              Oferecemos preços transparentes, pagamento seguro e suporte dedicado.
+Tenha a certeza de uma estadia perfeita desde a reserva até ao check-out.
+            </p>
+            <a href="#" class="botao-seccao">Reservar Agora</a>
+          </div>
+        </div>
+      </section>
+
+    <section class="section section4">
+    <!-- Texto acima dos cards -->
+    <div class="section-info">
+      <h2>Serviços pensados para o seu conforto</h2>
+      <p>
+        Desfrute de uma experiência completa com serviços exclusivos que tornam
+        a sua estadia ainda mais especial e inesquecível.
+      </p>
+    </div>
+
+    <!-- Scroll infinito dos cards -->
+    <div class="scroll-container">
+      <div class="scroll-wrapper">
+        <!-- Primeira série de cards -->
+        <div class="service-card">
+          <i class="fa-solid fa-couch"></i>
+          <p>Sala de Tarde</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-bed"></i>
+          <p>Quartos de Luxo</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-utensils"></i>
+          <p>Cozinha Modular</p>
+        </div>
+        <div class="service-card">
+       <i class="fa-solid fa-couch"></i>
+          <p>Mobiliário Moderno</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-wifi"></i>
+          <p>Wi-Fi Gratuito</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <p>Área de Estar</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-square-parking"></i>
+          <p>Estacionamento Privado</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-fan"></i>
+          <p>Ar Condicionado</p>
+        </div>
+
+        <!-- Duplicação para loop infinito -->
+        <div class="service-card">
+          <i class="fa-solid fa-couch"></i>
+          <p>Salas de Estar</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-bed"></i>
+          <p>Quartos de Luxo</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-utensils"></i>
+          <p>Cozinha Modular</p>
+        </div>
+        <div class="service-card">
+         <i class="fa-solid fa-couch"></i>
+          <p>Mobiliário Moderno</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-wifi"></i>
+          <p>Wi-Fi Gratuito</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <p>Área de Estar</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-square-parking"></i>
+          <p>Estacionamento Privado</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-fan"></i>
+          <p>Ar Condicionado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão abaixo dos cards -->
+    <div class="section-action">
+      <a href="#" class="botao-reservar">Contacte Agora</a>
+    </div>
+  </section>
+
+      <!-- QUINTA SECÇÃO -->
+      <section class="section">
+        <div class="container card">
+          <div class="img-placeholder3"></div>
+
+          <div class="texto">
+            <h2>Encontre o resort ideal para a sua próxima viagem</h2>
+            <p>
+              Descubra destinos incríveis, conforto absoluto e experiências inesquecíveis.
+Explore os melhores resorts e faça a sua reserva de forma simples, rápida e segura.
+            </p>
+            <a href="#" class="botao-reservar">Explorar Mais</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECÇÃO DE GERENTES -->
+      <section class="team-section" aria-labelledby="team-title">
+        <h2 id="team-title" class="section-info">Conheça alguns dos nossos funcionários</h2>
+        <div class="wrapper">
+          <span id="left" class="material-symbols-outlined">
+            arrow_back_ios
+          </span>
+          <ul class="carousel">
+            <li class="cartao">
+              <div class="wrapper-imagem">
+                <img
+                  src="imagens/imagens_gerentes/olawale-munna-qpyR0WKV_Cs-unsplash.jpg"
+                  alt="Gerente"
+                  draggable="false"
+                />
+              </div>
+              <h2>Ivandro Panzo</h2>
+              <p>Director</p>
+            </li>
+            <li class="cartao">
+              <div class="wrapper-imagem">
+                <img
+                  src="imagens/imagens_gerentes/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg"
+                  alt="Gerente"
+                  draggable="false"
+                />
+              </div>
+              <h2>Emílio Gaspar</h2>
+              <p>Gerente de Marketing</p>
+            </li>
+            <li class="cartao">
+              <div class="wrapper-imagem">
+                <img
+                  src="imagens/imagens_gerentes/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.jpg"
+                  alt="Gerente"
+                  draggable="false"
+                />
+              </div>
+              <h2>Elowine Zita</h2>
+              <p>Gerente de Vendas</p>
+            </li>
+            <li class="cartao">
+              <div class="wrapper-imagem">
+                <img
+                  src="imagens/imagens_gerentes/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg"
+                  alt="Gerente"
+                  draggable="false"
+                />
+              </div>
+              <h2>Maria Salo</h2>
+              <p>Gerente de Serviços</p>
+            </li>
+            <li class="cartao">
+              <div class="wrapper-imagem">
+                <img
+                  src="imagens/imagens_gerentes/itay-verchik-G3ZAhAJ2ojc-unsplash.jpg"
+                  alt="Gerente"
+                  draggable="false"
+                />
+              </div>
+              <h2>Áurio Zumba</h2>
+              <p>RH</p>
+            </li>
+          </ul>
+
+          <span id="right" class="material-symbols-outlined">
+            arrow_forward_ios
+          </span>
+        </div>
+      </section>
+
+<!--Galeria-->
+<section class="section galeria">
+  <div class="galeria-header">
+    <h2>Galeria de Imgens</h2>
+    <p>Momentos, espaços e experiências inesquecíveis.</p>
+  </div>
+
+  <div class="galeria-autoscroll">
+    <div class="galeria-track">
+      <!-- grupo 1 -->
+      <div class="galeria-item img1"></div>
+      <div class="galeria-item img2"></div>
+      <div class="galeria-item img3"></div>
+      <div class="galeria-item img4"></div>
+      <div class="galeria-item img5"></div>
+
+      <!-- grupo 2 (duplicado para loop perfeito) -->
+      <div class="galeria-item img1"></div>
+      <div class="galeria-item img2"></div>
+      <div class="galeria-item img3"></div>
+      <div class="galeria-item img4"></div>
+      <div class="galeria-item img5"></div>
+    </div>
+  </div>
+</section>
+
+      <!-- SEXTA SECÇÃO - MAPA -->
+      <section class="mapa-section" aria-labelledby="mapa-title">
+        <h2 id="mapa-title" class="section-info">Localização do resort</h2>
+        <div class="mapa-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4248.893605113733!2d13.100882975347645!3d-8.971890991087182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a52216869f61103%3A0xa486e6ddd4ad828c!2sMupas%20Beach%20%26%20Resort!5e1!3m2!1sen!2sao!4v1767361917332!5m2!1sen!2sao" width="1100" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+
+     </iframe>
+      <div class="mapa-card">
+          <div class="mapa-card-left">
+      <h3>Localização</h3>
+      <p>Estamos situados numa zona privilegiada, com fácil acesso e rodeada de tranquilidade.</p>
+
+      </div>
+          <div class="mapa-card-right">
+      <strong>Horário</strong>
+      <span>09h – 19h</span>
+
+        </div>
+</div>
+    </div>
+
+
+    </div>
+      </section>
+    </main>
+    <footer>
+      <div>
+        <h3>Reserve com confiança</h3>
+        <p>
+          Encontre os melhores resorts, compare opções e faça a sua reserva
+de forma simples, rápida e segura.
+        </p>
+      </div>
+      <div>
+        <h3>Sobre</h3>
+
+        <a href="#"> Blog </a>
+      </div>
+      <div>
+        <h3>Suporte</h3>
+        <a href="#"> Contacte-nos </a>
+        <a href="#"> FAQ </a>
+      </div>
+
+      <div class="footer-section">
+        <h3>Receber Actualizações</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail" />
+          <button type="submit">Subscrever</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <a href="#">Política de privacidade</a> |
+          <a href="#">Termos de serviço</a>
+        </p>
+        <p class="word">@2026 nome_do_resorte. Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <script src="scripts/function.js" defer></script>
+  </body>
+</html>
+
+
