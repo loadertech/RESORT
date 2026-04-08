@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verificar Disponibilidade</title>
-
+    <meta
+      name="description"
+      content="Verifique disponibilidade de resorts, aplique filtros e ajuste sua pesquisa em tempo real."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#044ab3" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/availability.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   </head>
 
   <body class="availability-page">
@@ -58,28 +66,25 @@
           <p>Encontre o resort ideal com filtros inteligentes e resultados em tempo real.</p>
         </div>
 
+        <div class="mobile-toggle-actions">
+          <button type="button" id="toggle-search-panel">Pesquisa</button>
+          <button type="button" id="toggle-filter-panel">Filtros</button>
+        </div>
+
         <form id="search-form" class="search-summary" aria-label="Resumo da pesquisa">
-          <label class="summary-field" for="search-destino">
+          <label class="summary-field summary-clickable" id="open-destino-modal" for="search-destino">
             <span class="material-symbols-outlined">location_on</span>
             <div>
               <small>Para onde?</small>
-              <input id="search-destino" class="summary-input" type="text" placeholder="Destino" />
+              <input id="search-destino" class="summary-input" type="text" placeholder="Destino" readonly />
             </div>
           </label>
 
-          <label class="summary-field" for="search-checkin">
+          <label class="summary-field summary-clickable" id="open-date-picker" for="search-datas">
             <span class="material-symbols-outlined">calendar_month</span>
             <div>
-              <small>Check-in</small>
-              <input id="search-checkin" class="summary-input" type="date" />
-            </div>
-          </label>
-
-          <label class="summary-field" for="search-checkout">
-            <span class="material-symbols-outlined">calendar_month</span>
-            <div>
-              <small>Check-out</small>
-              <input id="search-checkout" class="summary-input" type="date" />
+              <small>Datas</small>
+              <input id="search-datas" class="summary-input" type="text" placeholder="Selecionar datas" readonly />
             </div>
           </label>
 
@@ -97,7 +102,7 @@
         </form>
 
         <div class="results-layout">
-          <aside class="filters-panel" aria-label="Filtros da pesquisa">
+          <aside id="filters-panel" class="filters-panel" aria-label="Filtros da pesquisa">
             <article class="map-card">
               <div class="map-thumbnail"></div>
               <button class="map-button" type="button">Visualizar em um mapa</button>
@@ -188,6 +193,23 @@
       </section>
     </main>
 
+    <div id="modal-destino" class="availability-modal" aria-hidden="true">
+      <div class="availability-modal-content">
+        <h3>Para onde vai?</h3>
+        <div class="destino-search">
+          <span class="material-symbols-outlined">search</span>
+          <input id="input-busca-destino" type="text" placeholder="Explorar destinos..." />
+        </div>
+        <ul id="lista-destinos" class="lista-destinos">
+          <li data-destino="Cabo Ledo, Angola"><span class="material-symbols-outlined">location_on</span>Cabo Ledo, Angola</li>
+          <li data-destino="Luanda, Angola"><span class="material-symbols-outlined">location_on</span>Luanda, Angola</li>
+          <li data-destino="Ilha do Mussulo, Angola"><span class="material-symbols-outlined">location_on</span>Ilha do Mussulo, Angola</li>
+          <li data-destino="Bengo, Angola"><span class="material-symbols-outlined">location_on</span>Bengo, Angola</li>
+        </ul>
+        <button type="button" id="close-destino-modal" class="summary-action modal-close-btn">Fechar</button>
+      </div>
+    </div>
+
     <footer>
       <div>
         <h3>Experimente a Felicidade</h3>
@@ -223,7 +245,12 @@
       </div>
     </footer>
 
-    <script src="./scripts/function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <script src="./scripts/function.js" defer></script>
     <script type="module" src="./scripts/resultados/index.js"></script>
   </body>
 </html>
+
+
+
+

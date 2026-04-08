@@ -1,3 +1,4 @@
+
 body.page-contact .hero-image img {
   width: 100%;
   height: auto;
@@ -17,7 +18,7 @@ body.page-contact .contact-info h2,
 body.page-contact .contact-form h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #1a1a1a;
+  color: var(--cor-texto);
 }
 
 body.page-contact .contact-details ul {
@@ -52,9 +53,11 @@ body.page-contact .contact-form form {
 body.page-contact .contact-form form input,
 body.page-contact .contact-form form textarea {
   padding: 0.8rem;
-  border: 1px solid #ccc;
+  border: var(--border);
+  color: var(--cor-texto);
   border-radius: 6px;
   font-size: 1rem;
+  background-color: var(--cor-cards);
 }
 
 body.page-contact .contact-form form button {
@@ -70,6 +73,10 @@ body.page-contact .contact-form form button {
 
 body.page-contact form button:hover {
   background-color: #0056b3;
+}
+
+.contact-form h2 {
+  color: var(--cor-texto);
 }
 
 @media (max-width: 968px) {

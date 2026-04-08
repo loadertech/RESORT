@@ -1,4 +1,4 @@
-/* --- Home page: hero banner --- */
+﻿/* --- Home page: hero banner --- */
 .bem-vindo {
   position: relative;
   overflow: hidden;
@@ -1173,3 +1173,4 @@ body.dark .cartao p {
     right: -6px;
   }
 }
+

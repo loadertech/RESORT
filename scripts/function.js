@@ -7,12 +7,14 @@ const overlay = document.querySelector(".overlay");
 const menuClose = document.querySelector(".menu-close");
 
 function abrirMenu() {
+  if (!menu || !overlay || !menuToggle) return;
   menu.classList.add("ativo");
   overlay.classList.add("ativo");
   menuToggle.setAttribute("aria-expanded", "true");
 }
 
 function fecharMenu() {
+  if (!menu || !overlay || !menuToggle) return;
   menu.classList.remove("ativo");
   overlay.classList.remove("ativo");
   menuToggle.setAttribute("aria-expanded", "false");
@@ -121,3 +123,9 @@ window.addEventListener("click", (e) => {
 
 window.changeQty = changeQty;
 window.fecharModaisReserva = fecharModaisReserva;
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    fecharMenu();
+  }
+});

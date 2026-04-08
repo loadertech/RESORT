@@ -35,9 +35,26 @@
   font-size: 0.92rem;
 }
 
+.mobile-toggle-actions {
+  display: none;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.mobile-toggle-actions button {
+  flex: 1;
+  border: 1px solid rgba(4, 74, 179, 0.3);
+  background: #eaf2ff;
+  color: #0b4db4;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .search-summary {
   display: grid;
-  grid-template-columns: minmax(220px, 1.2fr) minmax(180px, 1fr) minmax(180px, 1fr) minmax(230px, 1.1fr) auto;
+  grid-template-columns: minmax(220px, 1.2fr) minmax(220px, 1.2fr) minmax(230px, 1.1fr) auto;
   gap: 10px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -54,6 +71,10 @@
   border-radius: 12px;
   padding: 10px 12px;
   background: #fff;
+}
+
+.summary-clickable {
+  cursor: pointer;
 }
 
 .summary-field .material-symbols-outlined {
@@ -75,10 +96,7 @@
   color: var(--cor-texto);
   font-size: 0.88rem;
   outline: none;
-}
-
-.summary-input[type="date"] {
-  min-width: 120px;
+  cursor: inherit;
 }
 
 .guest-field {
@@ -103,6 +121,16 @@
   border-radius: 8px;
   padding: 4px 8px;
   min-width: 56px;
+}
+
+.guest-inputs input[type="number"] {
+  color-scheme: light;
+}
+
+.guest-inputs input[type="number"]::-webkit-inner-spin-button,
+.guest-inputs input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  filter: saturate(1.2) brightness(0.8);
 }
 
 .summary-action {
@@ -439,6 +467,130 @@
   background: var(--surface);
 }
 
+/* modal destino */
+.availability-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  z-index: 1200;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.availability-modal.show {
+  display: flex;
+}
+
+.availability-modal-content {
+  width: min(500px, 96vw);
+  background: var(--cor-cards);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.availability-modal-content h3 {
+  margin-bottom: 10px;
+}
+
+.destino-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.destino-search input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--cor-texto);
+  outline: none;
+}
+
+.lista-destinos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.lista-destinos li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.lista-destinos li:hover {
+  background: rgba(4, 74, 179, 0.08);
+}
+
+.modal-close-btn {
+  width: 100%;
+  min-height: 40px;
+}
+
+/* flatpickr theme */
+.flatpickr-calendar {
+  background: var(--cor-cards);
+  color: var(--cor-texto);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays,
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+  background: transparent;
+  color: var(--cor-texto);
+}
+
+span.flatpickr-weekday {
+  color: var(--cor-subtitulo);
+}
+
+.flatpickr-day {
+  color: var(--cor-texto);
+}
+
+.flatpickr-day:hover {
+  background: rgba(4, 74, 179, 0.14);
+  border-color: rgba(4, 74, 179, 0.22);
+}
+
+.flatpickr-day.today {
+  border-color: var(--cor-botao);
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover {
+  background: var(--cor-botao);
+  border-color: var(--cor-botao);
+  color: #fff;
+}
+
+.flatpickr-day.inRange {
+  background: rgba(4, 74, 179, 0.18);
+  border-color: transparent;
+}
+
 body.dark .availability-shell,
 body.dark .filters-panel,
 body.dark .result-card,
@@ -446,19 +598,22 @@ body.dark .price-values div,
 body.dark .summary-field,
 body.dark .results-toolbar select,
 body.dark .empty-state,
-body.dark .guest-inputs input {
+body.dark .guest-inputs input,
+body.dark .availability-modal-content {
   background: var(--cor-cards);
 }
 
 body.dark .summary-input,
-body.dark .guest-inputs label {
+body.dark .guest-inputs label,
+body.dark .destino-search input {
   color: var(--cor-texto);
 }
 
 body.dark .search-summary,
 body.dark .result-tag,
 body.dark .clear-filters,
-body.dark .map-button {
+body.dark .map-button,
+body.dark .mobile-toggle-actions button {
   background: rgba(148, 163, 184, 0.12);
 }
 
@@ -467,9 +622,20 @@ body.dark .result-tag {
 }
 
 body.dark .map-button,
-body.dark .clear-filters {
+body.dark .clear-filters,
+body.dark .mobile-toggle-actions button {
   color: #8ab9ff;
   border-color: rgba(138, 185, 255, 0.35);
+}
+
+body.dark .flatpickr-calendar {
+  background: var(--cor-cards);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.45);
+}
+
+body.dark .flatpickr-day.inRange {
+  background: rgba(138, 183, 255, 0.22);
 }
 
 @media (max-width: 1200px) {
@@ -537,9 +703,27 @@ body.dark .clear-filters {
     align-items: flex-start;
   }
 
-  .search-summary {
+  .mobile-toggle-actions {
+    display: flex;
+  }
+
+  .search-summary,
+  .filters-panel {
+    display: none;
+  }
+
+  .search-summary.is-open,
+  .filters-panel.is-open {
+    display: grid;
+  }
+
+  .search-summary.is-open {
     grid-template-columns: 1fr;
     border-radius: 16px;
+  }
+
+  .filters-panel.is-open {
+    display: flex;
   }
 
   .guest-field,

@@ -1,4 +1,4 @@
-document
+﻿document
   .getElementById("contactForm")
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio padrão
@@ -31,3 +31,4 @@ document
         alert("Erro ao enviar a mensagem: " + error);
       });
   });
+

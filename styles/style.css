@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --cor-botao: #044ab3;
@@ -269,16 +269,17 @@ body.dark .theme-toggle {
   font-size: 15px;
   font-weight: 500;
   color: var(--cor-texto);
-  padding: 8px 4px;
+  padding: 8px 6px;
+  border-radius: 8px;
+  transition: color 0.22s ease, background-color 0.22s ease;
 }
 
-.botao-nav:hover {
+.botao-nav:hover,
+.botao-nav:focus-visible {
   color: #044ab3;
-}
-body.dark .botao-nav:hover {
-  color:#044ab3;
-}
-.btn-login {
+  background: rgba(4, 74, 179, 0.1);
+  outline: none;
+}.btn-login {
   text-decoration: none;
   background-color: var(--cor-botao);
   color: white;
@@ -344,11 +345,11 @@ body.dark .botao-nav {
   color: #dbeafe;
 }
 
-body.dark .botao-nav:hover {
-  color: #e0f2fe;
-}
-
-body.dark .footer-bottom p a,
+body.dark .botao-nav:hover,
+body.dark .botao-nav:focus-visible {
+  color: #8ab9ff;
+  background: rgba(138, 185, 255, 0.16);
+}`r`n`r`nbody.dark .footer-bottom p a,
 body.dark .footer-section a {
   color: #cbd5e1;
 }
@@ -449,6 +450,12 @@ footer form {
   display: flex;
   flex-direction: column;
 }
+
+footer form input[type="email"] {
+  background-color: var(--cor-cards);
+  border: 2px solid var(--border);
+  color: var(--cor-texto);
+}
 div.footer-bottom {
   grid-column: 1 / -1;
   display: flex;
@@ -531,3 +538,8 @@ footer > div:not(.footer-bottom) {
 }
 
 /* Page-specific CSS moved to styles/contact.css and styles/about.css */
+
+
+
+
+

@@ -66,25 +66,10 @@ export function renderPriceLabels(ui, min, max) {
   if (ui.priceMaxLabel) ui.priceMaxLabel.textContent = formatCurrency(max);
 }
 
-function dateToInputFormat(raw) {
-  if (!raw) return "";
-  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-
-  const parts = raw.split("/");
-  if (parts.length === 3) {
-    const [day, month, year] = parts;
-    if (year && month && day) {
-      return `${year.padStart(4, "20")}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-    }
-  }
-
-  return "";
-}
-
 export function hydrateSearchForm(ui, query) {
   if (ui.searchDestino) ui.searchDestino.value = query.destino || "";
-  if (ui.searchCheckin) ui.searchCheckin.value = dateToInputFormat(query.checkin);
-  if (ui.searchCheckout) ui.searchCheckout.value = dateToInputFormat(query.checkout);
-  if (ui.searchAdultos) ui.searchAdultos.value = String(query.adultos || 2);
+    if (ui.searchAdultos) ui.searchAdultos.value = String(query.adultos || 2);
   if (ui.searchCriancas) ui.searchCriancas.value = String(query.criancas || 0);
 }
+
+

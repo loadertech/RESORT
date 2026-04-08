@@ -12,10 +12,18 @@ import { renderResults, renderPriceLabels, hydrateSearchForm } from "./render.js
 const ui = {
   searchForm: document.getElementById("search-form"),
   searchDestino: document.getElementById("search-destino"),
-  searchCheckin: document.getElementById("search-checkin"),
-  searchCheckout: document.getElementById("search-checkout"),
+  searchDatas: document.getElementById("search-datas"),
   searchAdultos: document.getElementById("search-adultos"),
   searchCriancas: document.getElementById("search-criancas"),
+  openDatePicker: document.getElementById("open-date-picker"),
+  openDestinoModal: document.getElementById("open-destino-modal"),
+  modalDestino: document.getElementById("modal-destino"),
+  closeDestinoModal: document.getElementById("close-destino-modal"),
+  inputBuscaDestino: document.getElementById("input-busca-destino"),
+  listaDestinos: document.getElementById("lista-destinos"),
+  toggleSearchPanel: document.getElementById("toggle-search-panel"),
+  toggleFilterPanel: document.getElementById("toggle-filter-panel"),
+  filtersPanel: document.getElementById("filters-panel"),
   priceMin: document.getElementById("price-min"),
   priceMax: document.getElementById("price-max"),
   priceMinLabel: document.getElementById("price-min-label"),
@@ -34,13 +42,33 @@ const ui = {
 
 const query = parseQueryFromUrl();
 const state = createInitialFilterState(ui);
+let datePicker = null;
+
+function parseDateRangeText(value) {
+  if (!value) return { checkin: "", checkout: "" };
+  const normalized = value.replace(" to ", " a ");
+  const parts = normalized.split(" a ").map((part) => part.trim()).filter(Boolean);
+  return {
+    checkin: parts[0] || "",
+    checkout: parts[1] || "",
+  };
+}
+
+function formatRangeLabel() {
+  if (query.checkin && query.checkout) {
+    return `${query.checkin} a ${query.checkout}`;
+  }
+  return query.checkin || "";
+}
 
 function readSearchFormIntoQuery() {
   query.destino = ui.searchDestino?.value?.trim() || "";
-  query.checkin = ui.searchCheckin?.value || "";
-  query.checkout = ui.searchCheckout?.value || "";
   query.adultos = Math.max(1, Number(ui.searchAdultos?.value || 1));
   query.criancas = Math.max(0, Number(ui.searchCriancas?.value || 0));
+
+  const parsed = parseDateRangeText(ui.searchDatas?.value || "");
+  query.checkin = parsed.checkin;
+  query.checkout = parsed.checkout;
 
   if (ui.searchAdultos) ui.searchAdultos.value = String(query.adultos);
   if (ui.searchCriancas) ui.searchCriancas.value = String(query.criancas);
@@ -85,6 +113,92 @@ function resetFilters() {
   if (ui.sortSelect) ui.sortSelect.value = "recommended";
 
   render();
+}
+
+function openDestinoModal() {
+  if (!ui.modalDestino) return;
+  ui.modalDestino.classList.add("show");
+  ui.modalDestino.setAttribute("aria-hidden", "false");
+  ui.inputBuscaDestino?.focus();
+}
+
+function closeDestinoModal() {
+  if (!ui.modalDestino) return;
+  ui.modalDestino.classList.remove("show");
+  ui.modalDestino.setAttribute("aria-hidden", "true");
+}
+
+function bindDestinationModal() {
+  ui.openDestinoModal?.addEventListener("click", (event) => {
+    event.preventDefault();
+    openDestinoModal();
+  });
+
+  ui.searchDestino?.addEventListener("click", (event) => {
+    event.preventDefault();
+    openDestinoModal();
+  });
+
+  ui.closeDestinoModal?.addEventListener("click", closeDestinoModal);
+
+  ui.modalDestino?.addEventListener("click", (event) => {
+    if (event.target === ui.modalDestino) closeDestinoModal();
+  });
+
+  ui.listaDestinos?.addEventListener("click", (event) => {
+    const target = event.target.closest("li[data-destino]");
+    if (!target) return;
+
+    const value = target.getAttribute("data-destino") || "";
+    if (ui.searchDestino) ui.searchDestino.value = value;
+    query.destino = value;
+    closeDestinoModal();
+    render();
+  });
+
+  ui.inputBuscaDestino?.addEventListener("input", () => {
+    const term = (ui.inputBuscaDestino.value || "").toLowerCase();
+    ui.listaDestinos?.querySelectorAll("li[data-destino]").forEach((item) => {
+      const text = (item.textContent || "").toLowerCase();
+      item.style.display = text.includes(term) ? "" : "none";
+    });
+  });
+}
+
+function bindDatePicker() {
+  if (!ui.searchDatas || typeof flatpickr === "undefined") return;
+
+  datePicker = flatpickr(ui.searchDatas, {
+    mode: "range",
+    dateFormat: "d/m/Y",
+    minDate: "today",
+    conjunction: " a ",
+    defaultDate: [query.checkin, query.checkout].filter(Boolean),
+    onChange: (_selectedDates, dateStr) => {
+      const parsed = parseDateRangeText(dateStr);
+      query.checkin = parsed.checkin;
+      query.checkout = parsed.checkout;
+    },
+  });
+
+  ui.searchDatas.value = formatRangeLabel();
+
+  ui.openDatePicker?.addEventListener("click", (event) => {
+    event.preventDefault();
+    datePicker.open();
+  });
+}
+
+function bindMobileToggles() {
+  ui.toggleSearchPanel?.addEventListener("click", () => {
+    ui.searchForm?.classList.toggle("is-open");
+    ui.filtersPanel?.classList.remove("is-open");
+  });
+
+  ui.toggleFilterPanel?.addEventListener("click", () => {
+    ui.filtersPanel?.classList.toggle("is-open");
+    ui.searchForm?.classList.remove("is-open");
+  });
 }
 
 function bindEvents() {
@@ -146,5 +260,9 @@ function bindEvents() {
 }
 
 hydrateSearchForm(ui, query);
+ui.searchDatas && (ui.searchDatas.value = formatRangeLabel());
+bindDatePicker();
+bindDestinationModal();
+bindMobileToggles();
 bindEvents();
 render();
