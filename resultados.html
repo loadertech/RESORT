@@ -1,56 +1,229 @@
-<!doctype html>
-<html lang="pt">
+﻿<!doctype html>
+<html lang="pt-pt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resultados de Reserva</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <style>
-      .resultados-page {
-        padding: 80px 24px;
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-      }
+    <title>Verificar Disponibilidade</title>
 
-      .resultados-output {
-        text-align: left;
-        background: #f4f5f7;
-        border-radius: 12px;
-        padding: 16px;
-        overflow: auto;
-        white-space: pre-wrap;
-        word-break: break-word;
-      }
-
-      .resultados-back {
-        display: inline-block;
-        margin-top: 24px;
-        padding: 12px 24px;
-        background: #044ab3;
-        color: #fff;
-        border-radius: 999px;
-        text-decoration: none;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/availability.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <main>
-      <section class="resultados-page">
-        <h1>Resultados de Reserva</h1>
-        <p>
-          O seu pedido foi enviado. Esta página serve como marcador de posição
-          até à implementação dos resultados reais.
-        </p>
-        <p>Parâmetros recebidos:</p>
-        <pre id="query-output" class="resultados-output"></pre>
-        <a href="./index.html" class="resultados-back">Voltar ao site</a>
+
+  <body class="availability-page">
+    <header>
+      <div>
+        <a href="./index.html">
+          <p class="logo">LOGO</p>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">
+          <span class="material-symbols-outlined theme-icon">light_mode</span>
+        </button>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-controls="menu-lateral" aria-expanded="false">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <nav aria-label="Menu principal">
+          <a href="./index.html" class="botao-nav">Home</a>
+          <a href="./sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+          <a href="./contactos/Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+          <a href="#" class="btn-login">Entrar</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <aside class="menu-lateral" id="menu-lateral" aria-label="Menu móvel">
+      <div class="menu-header">
+        <button class="menu-close" aria-label="Fechar menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <a href="./index.html" class="botao-nav">Home</a>
+      <a href="./sobre_nos/Sobre Nós.html" class="botao-nav">Sobre Nós</a>
+      <a href="./contactos/Contacte-nos.html" class="botao-nav">Contacte-nos</a>
+      <a href="#" class="btn-reservar">Entrar</a>
+    </aside>
+
+    <main class="availability-main">
+      <section class="availability-shell">
+        <div class="page-title-wrap">
+          <h1>Verificar Disponibilidade</h1>
+          <p>Encontre o resort ideal com filtros inteligentes e resultados em tempo real.</p>
+        </div>
+
+        <form id="search-form" class="search-summary" aria-label="Resumo da pesquisa">
+          <label class="summary-field" for="search-destino">
+            <span class="material-symbols-outlined">location_on</span>
+            <div>
+              <small>Para onde?</small>
+              <input id="search-destino" class="summary-input" type="text" placeholder="Destino" />
+            </div>
+          </label>
+
+          <label class="summary-field" for="search-checkin">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <div>
+              <small>Check-in</small>
+              <input id="search-checkin" class="summary-input" type="date" />
+            </div>
+          </label>
+
+          <label class="summary-field" for="search-checkout">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <div>
+              <small>Check-out</small>
+              <input id="search-checkout" class="summary-input" type="date" />
+            </div>
+          </label>
+
+          <div class="summary-field guest-field">
+            <span class="material-symbols-outlined">group</span>
+            <div class="guest-inputs">
+              <label for="search-adultos">Adultos</label>
+              <input id="search-adultos" class="summary-input" type="number" min="1" value="2" />
+              <label for="search-criancas">Crianças</label>
+              <input id="search-criancas" class="summary-input" type="number" min="0" value="0" />
+            </div>
+          </div>
+
+          <button type="submit" id="btn-aplicar-resumo" class="summary-action">Buscar</button>
+        </form>
+
+        <div class="results-layout">
+          <aside class="filters-panel" aria-label="Filtros da pesquisa">
+            <article class="map-card">
+              <div class="map-thumbnail"></div>
+              <button class="map-button" type="button">Visualizar em um mapa</button>
+            </article>
+
+            <h2>Filtrar por</h2>
+
+            <section class="filter-group">
+              <h3>Preço noturno</h3>
+              <div class="price-values">
+                <div>
+                  <small>Min</small>
+                  <strong id="price-min-label">0 Kz</strong>
+                </div>
+                <div>
+                  <small>Max</small>
+                  <strong id="price-max-label">1 000 Kz</strong>
+                </div>
+              </div>
+              <div class="range-wrap" aria-label="Faixa de preço">
+                <input type="range" id="price-min" min="0" max="1000" step="10" value="0" />
+                <input type="range" id="price-max" min="0" max="1000" step="10" value="1000" />
+              </div>
+            </section>
+
+            <section class="filter-group">
+              <h3>Comodidades</h3>
+              <div class="amenities-grid">
+                <label><input type="checkbox" value="wifi" /> Wi-Fi</label>
+                <label><input type="checkbox" value="gym" /> Ginásio</label>
+                <label><input type="checkbox" value="pool" /> Piscina</label>
+                <label><input type="checkbox" value="ac" /> Ar-condicionado</label>
+                <label><input type="checkbox" value="parking" /> Estacionamento</label>
+                <label><input type="checkbox" value="restaurant" /> Restaurante</label>
+                <label><input type="checkbox" value="kitchen" /> Cozinha</label>
+                <label><input type="checkbox" value="vip" /> Acesso VIP</label>
+              </div>
+            </section>
+
+            <section class="filter-group">
+              <h3>Tipo de pagamento</h3>
+              <label class="radio-option"><input type="radio" name="pagamento" value="all" checked /> Todos</label>
+              <label class="radio-option"><input type="radio" name="pagamento" value="pay-now" /> Pagar agora</label>
+              <label class="radio-option"><input type="radio" name="pagamento" value="pay-later" /> Reserve agora, pague depois</label>
+            </section>
+
+            <section class="filter-group">
+              <h3>Opções de cancelamento</h3>
+              <label><input type="checkbox" id="filter-refundable" /> Totalmente reembolsável</label>
+            </section>
+
+            <section class="filter-group">
+              <h3>Plano de refeições</h3>
+              <label><input type="checkbox" value="breakfast" data-filter="meal" /> Café da manhã incluído</label>
+              <label><input type="checkbox" value="all-inclusive" data-filter="meal" /> Tudo incluído</label>
+              <label><input type="checkbox" value="lunch-dinner" data-filter="meal" /> Almoço e jantar</label>
+            </section>
+
+            <section class="filter-group">
+              <h3>Disponibilidade</h3>
+              <label><input type="checkbox" id="filter-available" /> Mostrar apenas propriedades disponíveis</label>
+            </section>
+
+            <button type="button" id="btn-limpar-filtros" class="clear-filters">Limpar filtros</button>
+          </aside>
+
+          <section class="results-panel" aria-label="Lista de resultados">
+            <div class="results-toolbar">
+              <p id="results-count">0 quartos</p>
+              <label>
+                Ordenar por
+                <select id="sort-select">
+                  <option value="recommended">Recomendado</option>
+                  <option value="price-asc">Menor preço</option>
+                  <option value="price-desc">Maior preço</option>
+                  <option value="rating-desc">Melhor avaliação</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="results-list" class="results-list"></div>
+            <div id="empty-state" class="empty-state" hidden>
+              <h3>Nenhum resultado encontrado</h3>
+              <p>Ajuste os filtros para visualizar mais opções.</p>
+            </div>
+          </section>
+        </div>
       </section>
     </main>
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const output = document.getElementById("query-output");
-      output.textContent = params.toString() || "Nenhum parâmetro recebido.";
-    </script>
+
+    <footer>
+      <div>
+        <h3>Experimente a Felicidade</h3>
+        <p>
+          Descubra os melhores resorts, compare experiências e faça a sua reserva
+          com conforto, rapidez e segurança.
+        </p>
+      </div>
+      <div>
+        <h3>Sobre</h3>
+        <a href="#">Blog</a>
+      </div>
+      <div>
+        <h3>Suporte</h3>
+        <a href="#">Contacte-nos</a>
+        <a href="#">FAQ</a>
+      </div>
+
+      <div class="footer-section">
+        <h3>Receber Atualizações</h3>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Introduza o seu email" />
+          <button type="submit">Subscrever</button>
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          <a href="#">Política de Privacidade</a> |
+          <a href="#">Termos de Serviço</a>
+        </p>
+        <p class="word">©2026 nome_do_resort. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="./scripts/function.js"></script>
+    <script type="module" src="./scripts/resultados/index.js"></script>
   </body>
 </html>
