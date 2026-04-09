@@ -1,5 +1,5 @@
 ﻿/* ===============================
-   CARROSSEL INFINITO (ESTÁVEL)
+   CARROSSEL INFINITO 
 ================================ */
 (function () {
   const carousel = document.querySelector(".carousel");

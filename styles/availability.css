@@ -143,6 +143,11 @@
   cursor: pointer;
 }
 
+.summary-action:active{
+  background: linear-gradient(135deg, #1c66de 0%, #044ab3 100%);
+  transform: scale(0.98);
+}
+
 .results-layout {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -178,7 +183,7 @@
   height: 120px;
   background:
     linear-gradient(180deg, rgba(18, 119, 196, 0.2), rgba(18, 119, 196, 0.05)),
-    url("../imagens/galeria/pexels-pixabay-274249.jpg") center/cover;
+    url("../img/galeria/pexels-pixabay-274249.jpg") center/cover;
 }
 
 .map-button {
@@ -287,6 +292,10 @@
   font-weight: 600;
   padding: 10px;
   cursor: pointer;
+}
+
+.clear-filters:active {
+  transform: scale(0.98);
 }
 
 .results-panel {
@@ -443,6 +452,11 @@
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+.result-cta:active {
+  background: #044ab3;
+  transform: scale(0.98);
 }
 
 .rating-chip {

@@ -113,7 +113,7 @@ header {
 
   background-color: var(--header-bg);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 1000;
 }
 
@@ -193,17 +193,13 @@ body.dark .theme-toggle {
   box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
   width: 280px;
   height: 100vh;
-
   background-color: var(--cor-cards);
   padding: 100px 24px 24px;
-
   display: flex;
   flex-direction: column;
   gap: 24px;
-
   transform: translateX(100%);
   transition: transform 0.35s ease;
-
   z-index: 1000;
 }
 
@@ -242,8 +238,7 @@ body.dark .theme-toggle {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  --webkit-backdrop-filter: blur(4px);
-
+  filter: blur(4px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -279,7 +274,9 @@ body.dark .theme-toggle {
   color: #044ab3;
   background: rgba(4, 74, 179, 0.1);
   outline: none;
-}.btn-login {
+}
+
+.btn-login {
   text-decoration: none;
   background-color: var(--cor-botao);
   color: white;
@@ -349,7 +346,9 @@ body.dark .botao-nav:hover,
 body.dark .botao-nav:focus-visible {
   color: #8ab9ff;
   background: rgba(138, 185, 255, 0.16);
-}`r`n`r`nbody.dark .footer-bottom p a,
+}
+
+body.dark .footer-bottom p a,
 body.dark .footer-section a {
   color: #cbd5e1;
 }
@@ -537,7 +536,9 @@ footer > div:not(.footer-bottom) {
   }
 }
 
-/* Page-specific CSS moved to styles/contact.css and styles/about.css */
+
+
+
 
 
 
