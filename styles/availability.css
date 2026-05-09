@@ -340,8 +340,8 @@
 
 .result-card {
   display: grid;
-  grid-template-columns: 220px 1fr 170px;
-  gap: 10px;
+  grid-template-columns: 220px 4fr 170px;
+  gap: 24px;
   border: 1px solid var(--border);
   background: var(--cor-cards);
   border-radius: 14px;
