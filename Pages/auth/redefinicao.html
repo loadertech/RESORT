@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar Palavra-passe | Baía de Cabo Ledo</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/auth.css" />
+  </head>
+  <body class="page-auth">
+    <main class="auth-shell">
+      <section class="auth-card" aria-label="Recuperação de conta">
+        <div class="auth-hero">
+          <div class="auth-brand">
+            <span class="auth-brand-badge">BC</span>
+            <span>Baía de Cabo Ledo</span>
+          </div>
+
+          <div class="auth-hero-copy">
+            <h1>Vamos recuperar o acesso à sua conta.</h1>
+            <p>
+              Introduza o email usado no registo para iniciar o processo de redefinição da
+              palavra-passe.
+            </p>
+          </div>
+
+          <div class="auth-highlights" aria-hidden="true">
+            <div class="auth-highlight">
+              <strong>Segurança</strong>
+              <span>Fluxo simples com validação no formulário.</span>
+            </div>
+            <div class="auth-highlight">
+              <strong>Rápido</strong>
+              <span>Em poucos passos volta a entrar.</span>
+            </div>
+            <div class="auth-highlight">
+              <strong>Confiança</strong>
+              <span>Experiência alinhada ao resto do site.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-topbar">
+            <a class="auth-back" href="./iniciar-sessao.html">Voltar ao login</a>
+            <span class="auth-kicker">Recuperação</span>
+          </div>
+
+          <h2>Redefinir palavra-passe</h2>
+          <p>Introduza o seu endereço de email registado para avançar.</p>
+
+          <form id="recoveryForm" class="auth-form" novalidate>
+            <div class="auth-field">
+              <label for="recovery-email">Endereço de email</label>
+              <input
+                type="email"
+                id="recovery-email"
+                name="email"
+                placeholder="nome@exemplo.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <button id="recovery-submit" class="auth-submit" type="submit" disabled>
+              Seguinte
+            </button>
+
+            <button
+              class="auth-secondary"
+              type="button"
+              onclick="window.location.href='./iniciar-sessao.html'"
+            >
+              Voltar para iniciar sessão
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../scripts/auth.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Palavra-passe | Baía de Cabo Ledo</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/auth.css" />
+  </head>
+  <body class="page-auth">
+    <main class="auth-shell">
+      <section class="auth-card" aria-label="Definir nova palavra-passe">
+        <div class="auth-hero">
+          <div class="auth-brand">
+            <span class="auth-brand-badge">BC</span>
+            <span>Baía de Cabo Ledo</span>
+          </div>
+
+          <div class="auth-hero-copy">
+            <h1>Defina uma nova palavra-passe segura.</h1>
+            <p>
+              Escolha uma combinação forte para proteger melhor a sua conta e continuar a gerir
+              as suas reservas com tranquilidade.
+            </p>
+          </div>
+
+          
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-topbar">
+            <a class="auth-back" href="./redefinicao.html">Passo anterior</a>
+            <span class="auth-kicker">Nova credencial</span>
+          </div>
+
+          <h2>Nova palavra-passe</h2>
+          <p>Introduza a nova palavra-passe e confirme para concluir.</p>
+
+          <form id="newPasswordForm" class="auth-form" novalidate>
+            <div class="auth-field">
+              <label for="new-password">Nova palavra-passe</label>
+              <input
+                type="password"
+                id="new-password"
+                name="password"
+                placeholder="Introduza a nova palavra-passe"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+
+            <div class="auth-field">
+              <label for="confirm-new-password">Confirmar palavra-passe</label>
+              <input
+                type="password"
+                id="confirm-new-password"
+                name="confirm-password"
+                placeholder="Repita a nova palavra-passe"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+
+            <button id="new-password-submit" class="auth-submit" type="submit" disabled>
+              Guardar nova palavra-passe
+            </button>
+
+            <button
+              class="auth-secondary"
+              type="button"
+              onclick="window.location.href='./redefinicao.html'"
+            >
+              Voltar
+            </button>
+
+            <p class="auth-message" data-auth-message></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../scripts/auth.js" defer></script>
+  </body>
+</html>
